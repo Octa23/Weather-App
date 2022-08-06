@@ -1,9 +1,16 @@
 import styled from "styled-components";
 import { MdGpsFixed } from "react-icons/md";
 import { Link } from "react-router-dom";
-import getCurrentPosition from "../../utils/getCurrentPosition";
+import useWeather from "../../hooks/useWeather";
 
 const SearchMethods = () => {
+  const { handleSelect } = useWeather();
+
+  const getCurrentPosition = () =>
+    navigator.geolocation.getCurrentPosition((position) => {
+      handleSelect(position.coords.latitude + "," + position.coords.longitude);
+    });
+
   return (
     <StyledContainer>
       <StyledButton>

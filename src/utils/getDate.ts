@@ -30,7 +30,7 @@ const getDate = (date: string) => {
 
   const time = today.toLocaleTimeString().slice(0, 8 - 3);
   const dateString = `${dayName}, ${day} ${monthName} `;
-  return { dateString, time };
+  return { dateString, time, dayName };
 };
 
 export default getDate;

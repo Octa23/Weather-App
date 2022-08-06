@@ -3,11 +3,8 @@ import AdditionalInfo from "./components/AdditionalInfo";
 import MainInfo from "./components/MainInfo";
 import SearchSection from "./components/SearchSection";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import useSearch from "./hooks/useSearch";
-import useWeather from "./hooks/useWeather";
-function App() {
-  const { handleSelect } = useWeather();
 
+function App() {
   return (
     <div className="App">
       <StyledContainer>
@@ -16,7 +13,7 @@ function App() {
             <Route path="/" element={<MainInfo />} />
             <Route
               path="/search"
-              element={<SearchSection handleSelect={handleSelect} />}
+              element={<SearchSection />}
             />
           </Routes>
         </BrowserRouter>

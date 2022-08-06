@@ -2,7 +2,46 @@ import React from "react";
 import styled from "styled-components";
 import { MdNavigation } from "react-icons/md";
 import ProgressBar from "./ProgressBar";
+import { useSelector } from "react-redux";
+import { keyBy } from "lodash";
+
+interface Props {
+  direction: string;
+}
+
+interface Weather {
+  wind_kph: number;
+  humidity: number;
+  vis_km: number;
+  pressure_mb: number;
+  wind_dir: string;
+}
+
 const Hightlights = () => {
+  const { current } = useSelector(
+    (state: any) => state.weather.selectedWeather
+  );
+
+  const directions:any = {
+    N: "0",
+    NNE: "22.5",
+    NE: "45",
+    ENE: "67.5",
+    E: "90",
+    ESE: "112.5",
+    SE: "135",
+    SSE: "157.5",
+    S: "180",
+    SSW: "202.5",
+    SW: "225",
+    WSW: "247.5",
+    W: "270",
+    WNW: "292.5",
+    NW: "315",
+    NNW: "337.5",
+  };
+
+  const { wind_kph, humidity, vis_km, pressure_mb, wind_dir } = current as Weather || {};
   return (
     <StyledContainer>
       <h2>Today's Hightlights</h2>
@@ -10,30 +49,34 @@ const Hightlights = () => {
         <div>
           <p>Wind status</p>
           <StyledText>
-            7<span>mph</span>
+            {wind_kph}
+            <span>kph</span>
           </StyledText>
-          <StyledNavigation>
+          <StyledNavigation direction={directions[wind_dir]}>
             <MdNavigation />
-            <p>Direction</p>
+            <p>{wind_dir}</p>
           </StyledNavigation>
         </div>
         <div>
           <p>Humidity</p>
           <StyledText>
-            87<span>%</span>
+            {humidity}
+            <span>%</span>
           </StyledText>
-          <ProgressBar completed={71} />
+          <ProgressBar completed={humidity} />
         </div>
         <div>
           <p>Visibility</p>
           <StyledText>
-            6,4<span> miles</span>
+            {vis_km}
+            <span> kms</span>
           </StyledText>
         </div>
         <div>
           <p>Air Pressure</p>
           <StyledText>
-            998<span> mb</span>
+            {pressure_mb}
+            <span> mb</span>
           </StyledText>
         </div>
       </StyledGrid>
@@ -62,7 +105,7 @@ const StyledGrid = styled.div`
   }
 `;
 
-const StyledNavigation = styled.div`
+const StyledNavigation = styled.div<Props>`
   display: flex;
   align-items: center;
   gap: 10px;
@@ -73,7 +116,8 @@ const StyledNavigation = styled.div`
     height: 30px;
     padding: 5px;
     border-radius: 50%;
-    transform: rotate(-150deg);
+    transform: ${(props) => `rotate(${props.direction}deg)`};
+    transition: all 1s ease-in-out;
   }
 `;
 
@@ -83,6 +127,6 @@ const StyledText = styled.div`
   line-height: 1.5;
   > span {
     font-size: 36px;
-  font-weight: 500;
+    font-weight: 500;
   }
 `;

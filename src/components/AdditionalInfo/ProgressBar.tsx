@@ -56,4 +56,5 @@ const StyledColorBar = styled.div<Props>`
   background-color: rgba(255, 236, 101, 1);
   border-radius: 10px;
   height: 10px;
+  transition: all 1s ease-in-out;
 `;

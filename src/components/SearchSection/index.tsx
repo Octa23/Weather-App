@@ -2,17 +2,13 @@ import styled from "styled-components";
 import { MdClose, MdSearch, MdKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import useWeather from "../../hooks/useWeather";
 import useSearch from "../../hooks/useSearch";
+import useWeather from "../../hooks/useWeather";
 
-interface Props {
-  
-  handleSelect: (city: string) => void;
-}
-
-const SearchSection = ({ handleSelect }: Props) => {
+const SearchSection = () => {
   const { Results } = useSelector((state: any) => state.search);
   const { handleSearch } = useSearch();
+  const { handleSelect } = useWeather();
   return (
     <StickyContainer>
       <StyledContainer>
