@@ -7,11 +7,10 @@ const WeatherCard = ({ SingleDay }: any) => {
   const Day = getDate(date + " 1:00").dayName;
   const condition = day.condition.text.replace(/ /g, "") ?? "";
   const { preference } = useSelector((state: any) => state.weather);
-
   return (
     <StyledCard>
       <p>{Day}</p>
-      <img src={`./assets/${condition}.png`} alt={condition} />
+      <img src={day?.condition?.icon} alt={condition} />
       <Temperatures>
         <span>{preference ? `${day.maxtemp_f}°F` : `${day.maxtemp_c}°C`}</span>
         <span>{preference ? `${day.mintemp_f}°F` : `${day.mintemp_c}°C`}</span>
@@ -34,7 +33,6 @@ const StyledCard = styled.div`
   > img {
     width: 100%;
     max-width: 100px;
-    object-position: -5px -10px;
   }
 `;
 const Temperatures = styled.div`

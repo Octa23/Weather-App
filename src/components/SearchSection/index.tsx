@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useSearch from "../../hooks/useSearch";
 import useWeather from "../../hooks/useWeather";
+import Spinner from "../Spinner";
 
 const SearchSection = () => {
-  const { Results } = useSelector((state: any) => state.search);
+  const { Results,loading } = useSelector((state: any) => state.search);
   const { handleSearch } = useSearch();
   const { handleSelect } = useWeather();
   return (
@@ -23,14 +24,14 @@ const SearchSection = () => {
           <label>
             <MdSearch />{" "}
             <input
-              placeholder="Search location"
+              placeholder="Search location (minimum 3 characters)"
               onChange={handleSearch}
               type="text"
               id="Name"
               name="Name"
             />
           </label>
-          <button>Search</button>
+          {loading && <Spinner />}
         </StyledForm>
         <StyledList>
           {Results &&
@@ -122,6 +123,7 @@ const StyledList = styled.ul`
   flex-direction: column;
   gap: 40px;
   font-size: 20px;
+  margin-bottom: 30px;
 
   > li {
     cursor: pointer;

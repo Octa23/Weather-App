@@ -69,7 +69,7 @@ const Hightlights = () => {
           <p>Visibility</p>
           <StyledText>
             {vis_km}
-            <span> kms</span>
+            <span> km</span>
           </StyledText>
         </div>
         <div>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Forecast from "./Forecast";
 import Hightlights from "./Hightlights";
+import HourlyForecast from "./HourlyForecast";
 import TemperatureOptions from "./TemperatureOptions";
 
 const AdditionalInfo = () => {
@@ -10,6 +11,7 @@ const AdditionalInfo = () => {
         <TemperatureOptions />
         <Forecast />
         <Hightlights />
+        <HourlyForecast />
       </div>
     </StyledContainer>
   );
@@ -25,7 +27,7 @@ const StyledContainer = styled.section`
   flex-direction: column;
   gap: 50px;
   padding: 30px 0;
-  
+
   > div {
     max-width: 1024px;
     width: 100%;

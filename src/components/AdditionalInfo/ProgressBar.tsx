@@ -53,8 +53,8 @@ const StyledBar = styled.div`
 const StyledColorBar = styled.div<Props>`
   width: ${(props) =>
     props.completed > 100 ? 100 : props.completed < 0 ? 0 : props.completed}%;
-  background-color: rgba(255, 236, 101, 1);
-  border-radius: 10px;
+  background-color: #3c47e9;
+  border-radius: 4px;
   height: 10px;
   transition: all 1s ease-in-out;
 `;

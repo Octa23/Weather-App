@@ -20,7 +20,7 @@ interface Props {
 const CurrentWeatherInfo = ({ current, location }: Props) => {
   const { dateString, time } = getDate(location?.localtime);
   const { preference } = useSelector((state: any) => state.weather);
-  
+
   return (
     <StyledContainer>
       {preference ? (
@@ -57,20 +57,32 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 90px;
+  @media (max-width: 568px) {
+    gap: 50px;
+  }
   > p:first-child {
     color: #e7e7eb;
     font-size: 144px;
     font-weight: 500;
+    @media (max-width: 568px) {
+      font-size: 48px;
+    }
 
     > span {
       color: #a09fb1;
       font-size: 48px;
+      @media (max-width: 568px) {
+        font-size: 36px;
+      }
     }
   }
   > p:nth-child(2) {
     font-size: 36px;
     color: #a09fb1;
     font-weight: 600;
+    text-align: center;
+    padding: 0 10px ;
+    line-height: 1;
   }
   > div {
     color: #88869d;
